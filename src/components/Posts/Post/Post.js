@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import moment from "moment";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const Post = ({ post, setCurrentId }) => {
   const [
@@ -90,9 +90,11 @@ const Post = ({ post, setCurrentId }) => {
         <Button
           style={{ color: "white" }}
           size="small"
-          onClick={() => setCurrentId(post._id)}
+          onClick={() => {
+            
+          }}
         >
-          <MoreHorizIcon fontSize="default" />
+          <DeleteIcon />
         </Button>
       </div>
       <div style={details}>
