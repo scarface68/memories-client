@@ -17,7 +17,7 @@ function App(){
     return(
         <Container maxwidth="lg">
             <AppBar style={appBar} position="static" color="inherit">
-                <Typography style={heading} variant="h2" align="center">Memories</Typography>
+                <Typography style={heading} variant="h2" align="center">Shared Memories</Typography>
                 <img style={imag} src={image} alt="memories" height="60" />
             </AppBar>
             <Grow in>

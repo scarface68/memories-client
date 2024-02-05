@@ -31,7 +31,7 @@ const Form = () => {
    function handleSubmit(e){
       e.preventDefault();
       try {
-        axios.post("https://memories-sai-mern.herokuapp.com/posts", postData);
+        axios.post(process.env.REACT_APP_BACKEND_URL + "/posts", postData);
       } catch (error) {
         console.log(error);
       }

@@ -7,10 +7,9 @@ import Post from './Post/Post';
 const Posts = ({ setCurrentId }) => {
 
   const [posts, setPosts] = useState([]);
-
   useEffect(() => {
-    axios.get("https://memories-sai-mern.herokuapp.com/posts").then((res) => {
-          setPosts(res.data);
+    axios.get(process.env.REACT_APP_BACKEND_URL + "/posts").then((res) => {
+      setPosts(res.data);
     })
   }, []);
 
