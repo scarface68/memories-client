@@ -32,6 +32,7 @@ const Form = () => {
       e.preventDefault();
       try {
         axios.post(process.env.REACT_APP_BACKEND_URL + "/posts", postData);
+        window.location.reload();
       } catch (error) {
         console.log(error);
       }

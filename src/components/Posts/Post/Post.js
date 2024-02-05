@@ -90,6 +90,7 @@ const Post = ({ post }) => {
   const handleDelete = () => {
     axios.delete(`${process.env.REACT_APP_BACKEND_URL}/posts/${post._id}`);
     handleClose();
+    window.location.reload();
   };
 
   const open = Boolean(anchorEl);
