@@ -43,7 +43,7 @@ const Form = () => {
     return(
         <Paper style={paper} >
             <form style={form} autoComplete="off" nonValidate onSubmit={handleSubmit}>
-                <Typography variant="h6">Creating a memory</Typography>
+                <Typography variant="h6">Create a memory</Typography>
                 <TextField name="creator" variant="outlined" label="Creator" fullWidth value={postData.creator} onChange={(event) => {setPostData({...postData,creator: event.target.value});}} />
                 <TextField name="title" variant="outlined" label="Title" fullWidth value={postData.title} onChange={(event) => {setPostData({...postData,title: event.target.value});}} />
                 <TextField name="message" variant="outlined" label="Message" fullWidth value={postData.message} onChange={(event) => {setPostData({...postData,message: event.target.value});}} />

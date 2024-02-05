@@ -6,11 +6,16 @@ import {
   CardMedia,
   Button,
   Typography,
+  Popover,
+  IconButton,
 } from "@mui/material";
 import moment from "moment";
-import DeleteIcon from '@mui/icons-material/Delete';
+import DeleteIcon from "@mui/icons-material/Delete";
+import CheckIcon from "@mui/icons-material/Check";
+import CloseIcon from "@mui/icons-material/Close";
+import axios from "axios";
 
-const Post = ({ post, setCurrentId }) => {
+const Post = ({ post }) => {
   const [
     media,
     border,
@@ -72,7 +77,23 @@ const Post = ({ post, setCurrentId }) => {
       justifyContent: "space-between",
     },
   ];
-  
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleDelete = () => {
+    axios.delete(`${process.env.REACT_APP_BACKEND_URL}/posts/${post._id}`);
+    handleClose();
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? "simple-popover" : undefined;
   return (
     <Card style={card}>
       <CardMedia
@@ -88,14 +109,43 @@ const Post = ({ post, setCurrentId }) => {
       </div>
       <div style={overlay2}>
         <Button
+          aria-describedby={id}
           style={{ color: "white" }}
           size="small"
-          onClick={() => {
-            
+          onClick={(event) => {
+            setAnchorEl(event.currentTarget);
           }}
         >
           <DeleteIcon />
         </Button>
+        <Popover
+          id={id}
+          open={open}
+          anchorEl={anchorEl}
+          onClose={handleClose}
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "left",
+          }}
+        >
+          <Typography sx={{ p: 2 }}>
+            Are you sure you want to delete?
+          </Typography>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              padding: "0 16px",
+            }}
+          >
+            <IconButton style={{ color: "green" }} onClick={handleDelete}>
+              <CheckIcon />
+            </IconButton>
+            <IconButton style={{ color: "red" }} onClick={handleClose}>
+              <CloseIcon />
+            </IconButton>
+          </div>
+        </Popover>
       </div>
       <div style={details}>
         <Typography variant="body2" color="textSecondary" component="h2">
