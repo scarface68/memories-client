@@ -88,9 +88,15 @@ const Post = ({ post }) => {
   };
 
   const handleDelete = () => {
-    axios.delete(`${process.env.REACT_APP_BACKEND_URL}/posts/${post._id}`);
+    axios
+      .delete(`${process.env.REACT_APP_BACKEND_URL}/posts/${post._id}`)
+      .then((response) => {
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     handleClose();
-    window.location.reload();
   };
 
   const open = Boolean(anchorEl);
